@@ -17,9 +17,13 @@ public class Purse {
         }
     }
 
-
-
-
+    public double remove(Denomination type, int num) {
+        if (cash.containsKey(type) && cash.get(type) >= num) {
+            cash.put(type, cash.get(type) - num);
+            return type.amt() * num;
+        }
+return 0.0;
+    }
 
 
 
