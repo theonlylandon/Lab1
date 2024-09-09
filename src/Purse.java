@@ -25,7 +25,25 @@ public class Purse {
 return 0.0;
     }
 
+public double getValue(){
 
+    double totalVal = 0.0;
+    for (Map.Entry<Denomination, Integer> entry : cash.entrySet()) {
+        Denomination denomination = entry.getKey();
+        int count = entry.getValue();
+        totalVal += denomination.amt() * count;
+
+    }
+return totalVal;
+    }
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Purse contains:\n");
+        for (Map.Entry<Denomination, Integer> entry : cash.entrySet()) {
+            sb.append(entry.getValue()).append(" x ").append(entry.getKey().name()).append("\n");
+        }
+        return sb.toString();
+    }
 
 }
 
