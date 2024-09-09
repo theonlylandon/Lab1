@@ -13,15 +13,26 @@ private static final Denomination[] denominations = {
         new Denomination("Penny", 0.01, "coin", "penny.png")
     };
 
+public Purse makeChange(double amt) {
+        Purse purse = new Purse();
 
+        // Go through each denomination from largest to smallest
+        for (int i = 0; i < denominations.length; i++) {
+            Denomination denom = denominations[i];
+            int count = (int) (amt / denom.amt());
+            if (count > 0) {
+                purse.add(denom, count);
+                amt -= count * denom.amt();
+            }
+        }
+        return purse;
+    }
 
+    public static void main(String[] args) {
+        Register register = new Register();
+        Purse purse = register.makeChange(29.63);
+        System.out.println(purse);
 
-
-
-
-
-
-
-
+    }
 
 }
